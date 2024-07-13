@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('danh_mucs', function (Blueprint $table) {
             $table->id();
             $table->string('ten_danh_muc')->unique();
+            $table->enum('trang_thai', ['active', 'inactive', 'pending'])->default('active');
             $table->timestamps();
         });
     }

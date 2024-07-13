@@ -18,6 +18,7 @@ class DanhMucFactory extends Factory
     {
         return [
             'ten_danh_muc' => $this->faker->sentence(3),
+            'trang_thai' => fake()->randomElement(['active', 'inactive', 'pending']),
             // 'mo_ta' => $this->faker->paragraph(3),
             // 'ngay_tao' => now(),
             // 'nguoi_tao_id' => 1, // User ID,

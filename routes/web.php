@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DanhMucController;
+use App\Http\Controllers\Admins\DanhMucController;
 
 /*
 |--------------------------------------------------------------------------

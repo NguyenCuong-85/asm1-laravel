@@ -10,7 +10,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -35,20 +35,20 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <!-- <i class="fas fa-fw fa-cog"></i> -->
-                    <span>Category</span>
+                    <span>Danh Mục</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Category:</h6>
-                        <a class="collapse-item" href="">Thêm Danh Mục</a>
-                        <a class="collapse-item" href="">Danh Sách Danh Mục</a>
+                        <a class="collapse-item" href="{{route('danhmucs.create')}}">Thêm Danh Mục</a>
+                        <a class="collapse-item" href="{{route('danhmucs.index')}}">Danh Sách Danh Mục</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <!-- <i class="fas fa-fw fa-cog"></i> -->
-                    <span>Product</span>
+                    <span>Sản Phẩm</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">

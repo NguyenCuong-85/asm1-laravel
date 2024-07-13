@@ -1,72 +1,83 @@
 @extends('layouts.admin')
 @section('content')
-<!-- End of Topbar -->
+    <!-- End of Topbar -->
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Danh mục</h1>
 
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Product</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <div class="col-sm-8">
-                        <form action="<?= route('category/creat') ?>" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Tên Danh Mục</label>
-                                        <input type="text" name="category_name" class="form-control" placeholder="abc">
-                                        <p style="color: red;"><?= $mess['category_name']['required'] ?? "" ?><?= $mess['category_name']['min'] ?? "" ?></p>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Thêm Danh Mục</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="col-sm-8">
+                            <form action="{{route('danhmucs.store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Tên Danh Mục</label>
+                                            <input type="text" name="ten_danh_muc" class="form-control"
+                                                placeholder="abcxyz">
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlSelect1">Trạng thái</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="trang_thai">
+                                                <option>--Chọn trạng thái--</option>
+                                                <option value="active">active</option>
+                                                <option value="inactive">inactive</option>
+                                                <option value="pending">pending</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Trạng Thái</label>
-                                        <input type="text" name="status" class="form-control" min="0" placeholder="">
-                                        <p style="color: red;"><?= $mess['status']['required'] ?? "" ?><?= $mess['status']['min'] ?? "" ?></p>
-                                    </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Tạo</button>
+                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                    <a class="btn btn-primary" href="{{route('danhmucs.index')}}">Danh Sách Danh Mục</a>
                                 </div>
+                            </form>
+                        </div>
+                    </table>
+                    <div class="">
+                    @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary">Tạo</button>
-                                <button type="reset" class="btn btn-primary">Reset</button>
-                                <a class="btn btn-primary" href="<?= route('categoryList') ?>">Danh Sách Danh Mục</a>
-                                <p style="color: red;"><?= $mess['success'] ?? "" ?></p>
-                            </div>
-                        </form>
-                    </div>
-                </table>
+                        @endif</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- /.container-fluid -->
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-        </div>
+    <!-- /.container-fluid -->
     </div>
-</footer>
-<!-- End of Footer -->
-<!-- End of Page Wrapper -->
-<!-- Scroll to Top Button-->
-</div>
-<!-- End of Page Wrapper -->
+    <!-- End of Main Content -->
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2020</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 @endsection

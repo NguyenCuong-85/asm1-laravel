@@ -14,7 +14,11 @@ class DanhMuc extends Model
         $danhMucs =  DB::table('danh_mucs')->get();
         return $danhMucs;
     }
+    public function createDanhMuc($data){
+        DB::table("danh_mucs")->create($data);
+    }
     protected $fillable = [
         'ten_danh_muc',
+        'trang_thai'
     ];
 }
