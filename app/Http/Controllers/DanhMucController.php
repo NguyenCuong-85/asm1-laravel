@@ -8,13 +8,18 @@ use App\Http\Requests\UpdateDanhMucRequest;
 
 class DanhMucController extends Controller
 {
-    // const PATH_VIEW = 'danhmuc.';
+    const PATH_VIEW = 'admins.danhmucs.';
+    protected $danh_muc;
+    public function __construct(){
+        $this->danh_muc = new DanhMuc();
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admins.danhmucs.index');
+        $danh_mucs = $this->danh_muc->getAllDanhMuc();
+        return view(self::PATH_VIEW.__FUNCTION__,compact('danh_mucs'));
     }
 
     /**
