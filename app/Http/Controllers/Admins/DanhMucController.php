@@ -60,7 +60,8 @@ class DanhMucController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DanhMuc::query()->findOrFail($id);
+        return view(self::PATH_VIEW.__FUNCTION__,compact('data'));
     }
 
     /**
