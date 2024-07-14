@@ -46,15 +46,15 @@
                                     <td>{{ $danh_muc->created_at }}</td>
                                     <td>{{ $danh_muc->updated_at }}</td>
                                     <td class="">
-                                        <form action="{{ route('danhmucs.destroy', $danh_muc->id) }}" method="POST">
+                                        <form action="{{ route('danhmucs.destroy', $danh_muc->id) }}" method="POST" onsubmit="return confirm('Bạn có muốn xóa Danh Mục này không?')">
                                             @csrf
                                             @method('DELETE')
                                             <div class="btn-group me-2" role="group" aria-label="First group">
                                                 <button type="submit" class="btn btn-outline-danger"><i
                                                         class="fas fa-trash text-danger"></i></button>
                                         </form>
-                                        <button type="button" class="btn btn-outline-warning"><i
-                                                class="fas fa-edit text-warning"></i></button>
+                                        <a href="{{ route('danhmucs.edit', $danh_muc->id) }}" class="btn btn-outline-warning"><i
+                                                class="fas fa-edit text-warning"></i></a>
                                         <a href="{{ route('danhmucs.show', $danh_muc->id) }}"
                                             class="btn btn-outline-info"><i class="fas fa-info text-info"></i></a>
 

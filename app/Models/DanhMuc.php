@@ -14,8 +14,33 @@ class DanhMuc extends Model
         $danhMucs =  DB::table('danh_mucs')->get();
         return $danhMucs;
     }
-    public function createDanhMuc($data){
-        DB::table("danh_mucs")->create($data);
+    public function getDanhMuc($id)
+    {
+        $danhMucs =  DB::table('danh_mucs')->where('id', $id)->first();
+        return $danhMucs;
+    }
+    public function deleteDanhMuc($id)
+    {
+        DB::table('danh_mucs')->where('id', $id)->delete();
+    }
+    public function createDanhMuc($data)
+    {
+        DB::table("danh_mucs")->insert([
+
+            'ten_danh_muc' => $data['ten_danh_muc'],
+            'trang_thai' => $data['trang_thai'],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+    public function updateDanhMuc($data, $id)
+    {
+        DB::table('danh_mucs')
+            ->where('id', $id)
+            ->update([
+                'ten_danh_muc' => $data->ten_danh_muc,
+                'trang_thai' => $data->trang_thai,
+            ]);
     }
     protected $fillable = [
         'ten_danh_muc',

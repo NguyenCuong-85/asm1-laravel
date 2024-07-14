@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admins;
 
 use App\Models\DanhMuc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class DanhMucController extends Controller
@@ -37,9 +38,8 @@ class DanhMucController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
-            // $data = $request->except('_token');
-            // $this->danh_muc->insert($data);
-            DanhMuc::create($request->all());
+            $data = $request->except('_token');
+            $this->danh_muc->createDanhMuc($data);
             return redirect()->back()->with('success', 'Thêm Danh Mục Thành Công!');
         }
 
@@ -50,7 +50,7 @@ class DanhMucController extends Controller
      */
     public function show(string $id)
     {
-        $data = DanhMuc::query()->findOrFail($id);
+        $data = $this->danh_muc->getDanhMuc($id);
         return view(self::PATH_VIEW.__FUNCTION__,compact('data'));
 
     }
@@ -60,7 +60,7 @@ class DanhMucController extends Controller
      */
     public function edit(string $id)
     {
-        $data = DanhMuc::query()->findOrFail($id);
+        $data = $this->danh_muc->getDanhMuc($id);
         return view(self::PATH_VIEW.__FUNCTION__,compact('data'));
     }
 
@@ -69,7 +69,8 @@ class DanhMucController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->danh_muc->updateDanhMuc($request, $id);
+        return redirect()->back()->with('success', 'Cập Nhật Danh Mục Thành Công!');
     }
 
     /**
@@ -77,8 +78,9 @@ class DanhMucController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = DanhMuc::query()->findOrFail($id);
-        $data->delete();
+        // $data = DanhMuc::query()->findOrFail($id);
+        // $data->delete();
+        $this->danh_muc->deleteDanhMuc($id);
         return redirect()->back()->with('success', 'Xóa Danh Mục Thành Công!');
     }
 }
