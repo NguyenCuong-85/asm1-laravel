@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,7 +11,8 @@ class SanPhamController extends Controller
 {
     const PATH_VIEW = 'admins.sanphams.';
     protected $san_pham;
-    public function __construct(){
+    public function __construct()
+    {
         $this->san_pham = new SanPham();
     }
     /**
@@ -18,7 +20,8 @@ class SanPhamController extends Controller
      */
     public function index()
     {
-        return view(self::PATH_VIEW.__FUNCTION__,compact('data'));
+        $data = $this->san_pham->getAllSanPham();
+        return view(self::PATH_VIEW . __FUNCTION__, compact('data'));
     }
 
     /**
@@ -26,15 +29,21 @@ class SanPhamController extends Controller
      */
     public function create()
     {
-        //
+        $data = DanhMuc::query()->get();
+        // dd($data);
+        return view(self::PATH_VIEW . __FUNCTION__,compact('data'));
     }
-
+     
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $data = $request->except('_token');
+            $this->san_pham->createSanPham($data);
+            return redirect()->back()->with('success', 'Thêm Sản Phẩm Thành Công!');
+        }
     }
 
     /**
@@ -42,7 +51,9 @@ class SanPhamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = $this->san_pham->getSanPham($id);
+        $danhMucs = DanhMuc::query()->get();
+        return view(self::PATH_VIEW . __FUNCTION__,compact('danhMucs','data'));
     }
 
     /**
@@ -50,7 +61,9 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = $this->san_pham->getSanPham($id);
+        $danhMucs = DanhMuc::query()->get();
+        return view(self::PATH_VIEW . __FUNCTION__,compact('danhMucs','data'));
     }
 
     /**

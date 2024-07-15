@@ -40,6 +40,7 @@ class DanhMuc extends Model
             ->update([
                 'ten_danh_muc' => $data->ten_danh_muc,
                 'trang_thai' => $data->trang_thai,
+                'updated_at' => now(),
             ]);
     }
     protected $fillable = [

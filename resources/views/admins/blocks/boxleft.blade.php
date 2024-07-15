@@ -53,8 +53,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Product:</h6>
-                        <a class="collapse-item" href="">Thêm Sản Phẩm</a>
-                        <a class="collapse-item" href="">Danh Sách Sản Phẩm</a>
+                        <a class="collapse-item" href="{{route('sanphams.create')}}">Thêm Sản Phẩm</a>
+                        <a class="collapse-item" href="{{route('sanphams.index')}}">Danh Sách Sản Phẩm</a>
                     </div>
                 </div>
             </li>
