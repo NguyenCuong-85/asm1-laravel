@@ -16,96 +16,93 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <div class="col-sm-8">
-                            <form action="{{ route('sanphams.store') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Mã Sản Phẩm</label>
-                                            <input type="text" name="ma_san_pham" value="{{ $data->ma_san_pham }}"
-                                                class="form-control" placeholder="">
-                                        </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Mã Sản Phẩm</label>
+                                        <input type="text" name="ma_san_pham" value="{{ $data->ma_san_pham }}"
+                                            class="form-control"disabled>
                                     </div>
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Tên Sản Phẩm</label>
-                                            <input type="text" name="ten_san_pham" value="{{ $data->ten_san_pham }}"
-                                                class="form-control" placeholder="">
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tên Sản Phẩm</label>
+                                        <input type="text" name="ten_san_pham" value="{{ $data->ten_san_pham }}"
+                                            class="form-control"disabled>
 
-                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Số Lượng Sản
-                                                Phẩm</label>
-                                            <input type="number" name="so_luong" value="{{ $data->so_luong }}"
-                                                class="form-control" min="0" placeholder="">
-                                        </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Số Lượng Sản
+                                            Phẩm</label>
+                                        <input type="number" name="so_luong" value="{{ $data->so_luong }}"
+                                            class="form-control" min="0" disabled>
                                     </div>
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Giá Sản Phẩm</label>
-                                            <input type="number" name="gia" value="{{ $data->gia }}"
-                                                class="form-control" placeholder="">
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Giá Sản Phẩm</label>
+                                        <input type="number" name="gia" value="{{ $data->gia }}"
+                                            class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm</label>
+                                    <div class="input-group mb-3">
+                                        <img src="{{ Storage::url($data->hinh_anh) }}" width="200" alt="Ảnh sản phẩm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Mô tả</span>
+                                            <textarea class="form-control" disabled name="mo_ta" aria-label="With textarea">{{ $data->mo_ta }}</textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm</label>
-                                        <div class="input-group mb-3">
-                                            <input type="file" accept="image/*" name="hinh_anh" class="form-control"
-                                                id="inputGroupFile02">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlSelect1">Trạng thái</label><select
+                                            class="form-control" id="exampleFormControlSelect1" name="trang_thai" disabled>
+                                            <option {{ $data->trang_thai == '1' ? 'selected' : '' }} value="1">
+                                                Active</option>
+                                            <option {{ $data->trang_thai == '0' ? 'selected' : '' }} value="0">
+                                                Inactive</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <div class="input-group">
-                                                <span class="input-group-text">Mô tả</span>
-                                                <textarea class="form-control" name="mo_ta" aria-label="With textarea">{{ $data->mo_ta }}</textarea>
-                                            </div>
-                                        </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Ngày sản xuất</label>
+                                        <input type="date" name="ngay_san_xuat" value="{{ $data->ngay_san_xuat }}"
+                                            class="form-control" id="inputGroupFile02" disabled>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlSelect1">Trạng thái</label><select
-                                                class="form-control" id="exampleFormControlSelect1" name="trang_thai">
-                                                <option {{ $data->trang_thai == '1' ? 'selected' : '' }} value="1">
-                                                    Active</option>
-                                                <option {{ $data->trang_thai == '0' ? 'selected' : '' }} value="0">
-                                                    Inactive</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Ngày sản xuất</label>
-                                            <input type="date" name="ngay_san_xuat" value="{{$data->ngay_san_xuat}}" class="form-control"
-                                                id="inputGroupFile02">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlSelect1">Danh Mục</label><select
-                                                class="form-control" id="exampleFormControlSelect1" name="danh_muc_id">
-                                                <option>--Chọn danh mục--</option>
-                                                @foreach ($danhMucs as $item)
-                                                    <option value="{{ $item->id }}" {{ $data->danh_muc_id == $item->id ? 'selected' : '' }} >{{ $item->ten_danh_muc }}</option>
-                                                @endforeach
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlSelect1">Danh Mục</label><select class="form-control"
+                                            id="exampleFormControlSelect1" name="danh_muc_id" disabled>
+                                            <option>--Chọn danh mục--</option>
+                                            @foreach ($danhMucs as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $data->danh_muc_id == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->ten_danh_muc }}</option>
+                                            @endforeach
 
-                                            </select>
-                                        </div>
+                                        </select>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Tạo</button>
-                                <button type="reset" class="btn btn-primary">Reset</button>
-                                <a class="btn btn-primary" href="{{ route('sanphams.index') }}">Danh Sách Sản Phẩm</a>
+                            </div>
+                            <a class="btn btn-primary" href="{{ route('sanphams.index') }}">Danh Sách Sản Phẩm</a>
                         </div>
-                        </form>
+
                 </div>
                 </table>
                 <div class="">

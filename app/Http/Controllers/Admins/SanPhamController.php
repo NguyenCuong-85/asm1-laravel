@@ -31,9 +31,9 @@ class SanPhamController extends Controller
     {
         $data = DanhMuc::query()->get();
         // dd($data);
-        return view(self::PATH_VIEW . __FUNCTION__,compact('data'));
+        return view(self::PATH_VIEW . __FUNCTION__, compact('data'));
     }
-     
+
     /**
      * Store a newly created resource in storage.
      */
@@ -41,6 +41,15 @@ class SanPhamController extends Controller
     {
         if ($request->isMethod('POST')) {
             $data = $request->except('_token');
+            // Thêm hình ảnh
+            if ($request->hasFile('hinh_anh')) {
+                // Thêm hình ảnh
+                $filename = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
+            } else {
+                $filename = null;
+            }
+
+            $data['hinh_anh'] = $filename;
             $this->san_pham->createSanPham($data);
             return redirect()->back()->with('success', 'Thêm Sản Phẩm Thành Công!');
         }
@@ -53,7 +62,7 @@ class SanPhamController extends Controller
     {
         $data = $this->san_pham->getSanPham($id);
         $danhMucs = DanhMuc::query()->get();
-        return view(self::PATH_VIEW . __FUNCTION__,compact('danhMucs','data'));
+        return view(self::PATH_VIEW . __FUNCTION__, compact('danhMucs', 'data'));
     }
 
     /**
@@ -63,7 +72,7 @@ class SanPhamController extends Controller
     {
         $data = $this->san_pham->getSanPham($id);
         $danhMucs = DanhMuc::query()->get();
-        return view(self::PATH_VIEW . __FUNCTION__,compact('danhMucs','data'));
+        return view(self::PATH_VIEW . __FUNCTION__, compact('danhMucs', 'data'));
     }
 
     /**
@@ -71,7 +80,20 @@ class SanPhamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Lấy tất cả dữ liệu từ request trừ _token
+        $data = $request->except('_token');
+    
+        // Kiểm tra nếu có file hình ảnh mới được tải lên
+        if ($request->hasFile('hinh_anh')) {
+            // Lưu file hình ảnh mới
+            $filename = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
+            $data['hinh_anh'] = $filename;
+        }
+    
+        // Cập nhật sản phẩm
+        $this->san_pham->updateSanPham($data, $id);
+    
+        return redirect()->back()->with('success', 'Cập Nhật Sản Phẩm Thành Công!');
     }
 
     /**
@@ -79,6 +101,7 @@ class SanPhamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->san_pham->deleteSanPham($id);
+        return redirect()->back()->with('success', 'Xóa Sản Phẩm Thành Công!');
     }
 }
