@@ -48,11 +48,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-8">
                                         <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm</label>
                                         <div class="input-group mb-3">
                                             <input type="file" accept="image/*" name="hinh_anh" class="form-control"
-                                                id="inputGroupFile02">
+                                                id="inputGroupFile02" onchange="showImage(event)">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group mb-3">
+                                            <img id="image_san_pham" src="" alt="Lỗi"
+                                                style="height: 100;display: none;">
                                         </div>
                                     </div>
                                 </div>
@@ -89,9 +95,9 @@
                                                 class="form-control" id="exampleFormControlSelect1" name="danh_muc_id">
                                                 <option>--Chọn danh mục--</option>
                                                 @foreach ($data as $item)
-                                                <option value="{{$item->id}}">{{$item->ten_danh_muc}}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->ten_danh_muc }}</option>
                                                 @endforeach
-                                                
+
                                             </select>
                                         </div>
                                     </div>
@@ -137,3 +143,21 @@
         <i class="fas fa-angle-up"></i>
     </a>
 @endsection
+<script>
+    function showImage(event) {
+        const image_san_pham = document.getElementById('image_san_pham');
+
+        const file = event.target.files[0];
+
+        const render = new FileReader();
+
+        render.onload = function() {
+            image_san_pham.src = render.result;
+            image_san_pham.style.display = 'block';
+        }
+
+        if (file) {
+            render.readAsDataURL(file);
+        }
+    }
+</script>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SanPham extends Model
@@ -27,6 +28,7 @@ class SanPham extends Model
         DB::table($this->table)->insert([
             'ma_san_pham' => $data['ma_san_pham'],
             'ten_san_pham' => $data['ten_san_pham'],
+            'hinh_anh' => $data['hinh_anh'],
             'so_luong' => $data['so_luong'],
             'gia' => $data['gia'],
             'mo_ta' => $data['mo_ta'],
@@ -39,13 +41,41 @@ class SanPham extends Model
     }
     public function updateSanPham($data, $id)
     {
+        // Lấy sản phẩm hiện tại
+        $sanPham = DB::table($this->table)->where('id', $id)->first();
+
+        // Kiểm tra nếu không có hình ảnh mới được tải lên, giữ lại hình ảnh cũ
+        if (empty($data['hinh_anh'])) {
+            $data['hinh_anh'] = $sanPham->hinh_anh;
+        }
+
         DB::table($this->table)
             ->where('id', $id)
             ->update([
-                'ten_danh_muc' => $data->ten_danh_muc,
-                'trang_thai' => $data->trang_thai,
-                'updated_at' => now(),
+                'ma_san_pham' => $data['ma_san_pham'],
+                'ten_san_pham' => $data['ten_san_pham'],
+                'hinh_anh' => $data['hinh_anh'],
+                'so_luong' => $data['so_luong'],
+                'gia' => $data['gia'],
+                'mo_ta' => $data['mo_ta'],
+                'ngay_san_xuat' => $data['ngay_san_xuat'],
+                'trang_thai' => $data['trang_thai'],
+                'danh_muc_id' => $data['danh_muc_id'],
+                'updated_at' => now()
             ]);
+    }
+    public function deleteSanPham($id)
+    {
+        // Lấy thông tin sản phẩm hiện tại
+        $sanPham = DB::table($this->table)->where('id', $id)->first();
+
+        // Xóa sản phẩm khỏi cơ sở dữ liệu
+        DB::table($this->table)->where('id', $id)->delete();
+
+        // Nếu sản phẩm có hình ảnh, xóa hình ảnh khỏi thư mục lưu trữ
+        if ($sanPham && $sanPham->hinh_anh) {
+            Storage::disk('public')->delete($sanPham->hinh_anh);
+        }
     }
     use HasFactory;
     protected $fillable = [
