@@ -7,8 +7,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
 
-        <!-- DataTales Example kakakaka -->
-        {{-- Thêm sản phẩm  --}}
+        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Product</h6>
