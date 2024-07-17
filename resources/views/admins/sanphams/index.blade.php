@@ -39,7 +39,7 @@
                         <td>{{$key+1}}</td>
                         <td>{{$item->ma_san_pham}}</td>
                         <td>{{$item->ten_san_pham}}</td>
-                        <td><img src="{{$item->hinh_anh}}" height="50" width="100" alt="Lỗi"></td>
+                        <td><img src="{{Storage::url($item->hinh_anh)}}" height="50" width="100" alt="Lỗi"></td>
                         <td>{{$item->so_luong}}</td>
                         <td>{{$item->gia}}</td>
                         {{-- <td>{{$item->mo_ta}}</td> --}}
@@ -49,7 +49,7 @@
                         <td>{{$item->ten_danh_muc}}</td>
                         <td>{{$item->trang_thai}}</td>
                         <td class="">
-                            <form action="{{ route('sanphams.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Bạn có muốn xóa Danh Mục này không?')">
+                            <form action="{{ route('sanphams.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Bạn có muốn xóa sản phẩm này không?')">
                                 @csrf
                                 @method('DELETE')
                                 <div class="btn-group me-2" role="group" aria-label="First group">

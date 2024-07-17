@@ -17,8 +17,10 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <div class="col-sm-8">
-                            <form action="{{ route('sanphams.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('sanphams.update', $data->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
@@ -53,10 +55,25 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm</label>
+                                        <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm Mới</label>
                                         <div class="input-group mb-3">
                                             <input type="file" accept="image/*" name="hinh_anh" class="form-control"
                                                 id="inputGroupFile02">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group mb-3">
+                                            <img id="image_san_pham" src="" alt="Lỗi"
+                                                style="height: 100;display: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1" class="form-label">Ảnh Gốc Sản Phẩm</label>
+                                        <div class="input-group mb-3">
+                                            <img src="{{ Storage::url($data->hinh_anh) }}" width="200"
+                                                alt="Ảnh sản phẩm">
                                         </div>
                                     </div>
                                 </div>
@@ -85,8 +102,8 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Ngày sản xuất</label>
-                                            <input type="date" name="ngay_san_xuat" value="{{$data->ngay_san_xuat}}" class="form-control"
-                                                id="inputGroupFile02">
+                                            <input type="date" name="ngay_san_xuat" value="{{ $data->ngay_san_xuat }}"
+                                                class="form-control" id="inputGroupFile02">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -95,7 +112,9 @@
                                                 class="form-control" id="exampleFormControlSelect1" name="danh_muc_id">
                                                 <option>--Chọn danh mục--</option>
                                                 @foreach ($danhMucs as $item)
-                                                    <option value="{{ $item->id }}" {{ $data->danh_muc_id == $item->id ? 'selected' : '' }} >{{ $item->ten_danh_muc }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $data->danh_muc_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->ten_danh_muc }}</option>
                                                 @endforeach
 
                                             </select>
