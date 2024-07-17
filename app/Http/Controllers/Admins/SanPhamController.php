@@ -82,7 +82,7 @@ class SanPhamController extends Controller
     {
         // Lấy tất cả dữ liệu từ request trừ _token
         $data = $request->except('_token');
-    
+    // dd($data);
         // Kiểm tra nếu có file hình ảnh mới được tải lên
         if ($request->hasFile('hinh_anh')) {
             // Lưu file hình ảnh mới

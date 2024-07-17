@@ -57,25 +57,25 @@
                                         <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm Mới</label>
                                         <div class="input-group mb-3">
                                             <input type="file" accept="image/*" name="hinh_anh" class="form-control"
-                                                id="inputGroupFile02">
+                                                id="inputGroupFile02" onchange="showImage(event)">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="input-group mb-3">
-                                            <img id="image_san_pham" src="" alt="Lỗi"
-                                                style="height: 100;display: none;">
+                                            <img id="image_san_pham" src="{{ Storage::url($data->hinh_anh) }}"
+                                                alt="Lỗi" style="height: 100;">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col">
-                                        <label for="exampleFormControlInput1" class="form-label">Ảnh Gốc Sản Phẩm</label>
+                                        <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm</label>
                                         <div class="input-group mb-3">
                                             <img src="{{ Storage::url($data->hinh_anh) }}" width="200"
                                                 alt="Ảnh sản phẩm">
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
@@ -161,3 +161,21 @@
         <i class="fas fa-angle-up"></i>
     </a>
 @endsection
+<script>
+    function showImage(event) {
+        const image_san_pham = document.getElementById('image_san_pham');
+
+        const file = event.target.files[0];
+
+        const render = new FileReader();
+
+        render.onload = function() {
+            image_san_pham.src = render.result;
+            image_san_pham.style.display = 'block';
+        }
+
+        if (file) {
+            render.readAsDataURL(file);
+        }
+    }
+</script>
