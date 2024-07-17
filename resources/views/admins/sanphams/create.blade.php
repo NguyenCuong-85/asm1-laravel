@@ -22,28 +22,46 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Mã Sản Phẩm</label>
-                                            <input type="text" name="ma_san_pham" class="form-control" placeholder="">
+                                            <input type="text" name="ma_san_pham"
+                                                class="form-control  @error('ma_san_pham') is-invalid @enderror"
+                                                placeholder="">
+                                            @error('ma_san_pham')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Tên Sản Phẩm</label>
-                                            <input type="text" name="ten_san_pham" class="form-control" placeholder="">
-
+                                            <input type="text" name="ten_san_pham"
+                                                class="form-control @error('ten_san_pham') is-invalid @enderror"
+                                                placeholder="">
+                                            @error('ten_san_pham')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Số Lượng Sản
                                                 Phẩm</label>
-                                            <input type="number" name="so_luong" class="form-control" min="0"
+                                            <input type="number" name="so_luong"
+                                                class="form-control @error('so_luong') is-invalid @enderror" min="0"
                                                 placeholder="">
+                                            @error('so_luong')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Giá Sản Phẩm</label>
-                                            <input type="number" name="gia" class="form-control" placeholder="">
+                                            <input type="number" name="gia"
+                                                class="form-control @error('gia') is-invalid @enderror" placeholder="">
+
+                                            @error('gia')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +69,12 @@
                                     <div class="col-8">
                                         <label for="exampleFormControlInput1" class="form-label">Ảnh Sản Phẩm</label>
                                         <div class="input-group mb-3">
-                                            <input type="file" accept="image/*" name="hinh_anh" class="form-control"
+                                            <input type="file" accept="image/*" name="hinh_anh"
+                                                class="form-control @error('hinh_anh') is-invalid @enderror"
                                                 id="inputGroupFile02" onchange="showImage(event)">
+                                            @error('hinh_anh')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -67,7 +89,10 @@
                                         <div class="mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">Mô tả</span>
-                                                <textarea class="form-control" name="mo_ta" aria-label="With textarea"></textarea>
+                                                <textarea class="form-control  @error('mo_ta') is-invalid @enderror" name="mo_ta" aria-label="With textarea"></textarea>
+                                                @error('mo_ta')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -76,29 +101,41 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlSelect1">Trạng thái</label><select
-                                                class="form-control" id="exampleFormControlSelect1" name="trang_thai">
+                                                class="form-control @error('trang_thai') is-invalid @enderror"
+                                                id="exampleFormControlSelect1" name="trang_thai">
+                                                <option value="" >--Chọn trạng thái</option>
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
+                                            @error('trang_thai')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">Ngày sản xuất</label>
-                                            <input type="date" name="ngay_san_xuat" class="form-control"
+                                            <input type="date" name="ngay_san_xuat" class="form-control @error('ngay_san_xuat') is-invalid @enderror"
                                                 id="inputGroupFile02">
+                                            @error('ngay_san_xuat')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlSelect1">Danh Mục</label><select
-                                                class="form-control" id="exampleFormControlSelect1" name="danh_muc_id">
+                                                class="form-control @error('title') is-invalid @enderror"
+                                                id="exampleFormControlSelect1" name="danh_muc_id">
                                                 <option>--Chọn danh mục--</option>
                                                 @foreach ($data as $item)
                                                     <option value="{{ $item->id }}">{{ $item->ten_danh_muc }}</option>
                                                 @endforeach
 
                                             </select>
+                                            @error('danh_muc_id')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

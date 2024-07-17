@@ -41,12 +41,6 @@ class SanPham extends Model
     }
     public function updateSanPham($data, $id)
     {
-        // Lấy sản phẩm hiện tại
-        $sanPham = $this->getSanPham($id);
-        // Kiểm tra nếu không có hình ảnh mới được tải lên, giữ lại hình ảnh cũ
-        if (empty($data['hinh_anh'])) {
-            $data['hinh_anh'] = $sanPham->hinh_anh;
-        }
         DB::table($this->table)
             ->where('id', $id)
             ->update([
@@ -63,15 +57,9 @@ class SanPham extends Model
             ]);
     }
     public function deleteSanPham($id)
-    {
-        // Lấy thông tin sản phẩm hiện tại
-        $sanPham = DB::table($this->table)->where('id', $id)->first();
+    { 
         // Xóa sản phẩm khỏi cơ sở dữ liệu
         DB::table($this->table)->where('id', $id)->delete();
-        // Nếu sản phẩm có hình ảnh, xóa hình ảnh khỏi thư mục lưu trữ
-        if ($sanPham && $sanPham->hinh_anh) {
-            Storage::disk('public')->delete($sanPham->hinh_anh);
-        }
     }
     use HasFactory;
     protected $fillable = [
