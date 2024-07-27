@@ -17,11 +17,13 @@ class ClientController extends Controller
     }
     public function chiTietSanPham($id)
     {
+        $danh_mucs = DanhMuc::query()->get();
         $san_pham = SanPham::findOrFail($id);
-        return view('clients.chitietsanpham', compact('san_pham'));
+        return view('clients.chitietsanpham', compact('san_pham','danh_mucs'));
     }
     public function userProfile()
     {
-        return view('clients.thongTinNguoiDung');
+        $danh_mucs = DanhMuc::query()->get();
+        return view('clients.thongTinNguoiDung', compact('danh_mucs'));
     }
 }

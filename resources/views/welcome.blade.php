@@ -183,9 +183,9 @@
                                     </div>
                                 </div>
                                 <div class="product-cart-btn">
-                                    <button class="add-to-cart product-btn" data-hinh_anh="{{ $item->hinh_anh }}" data-id="{{ $item->id }}"
+                                    <button class="add-to-cart product-btn" data-id="{{ $item->id }}"
                                         data-name="{{ $item->ten_san_pham }}" data-price="{{ $item->gia }}"
-                                        data-quantity="1">
+                                        data-quantity="1" data-image="{{ $item->hinh_anh }}">
                                         Add to cart
                                     </button>
                                 </div>
@@ -204,9 +204,9 @@
                 var name = $(this).data('name');
                 var price = $(this).data('price');
                 var quantity = $(this).data('quantity');
-                var hinh_anh = $(this).data('hinh_anh');
+                var image = $(this).data('image');
                 var token = $('meta[name="csrf-token"]').attr('content');
-                // console.log(id, quantity, image, token);
+                console.log(id, quantity, image, token);
                 $.ajax({
                     url: '{{ route('add.to.cart') }}',
                     method: 'POST',
@@ -216,7 +216,7 @@
                         name: name,
                         price: price,
                         quantity: quantity,
-                        hinh_anh: hinh_anh,
+                        image: image,
                     },
                     // console.log(data);
                     success: function(response) {

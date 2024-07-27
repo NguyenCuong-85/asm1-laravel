@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Models\DanhMuc;
 class LoginController extends Controller
 {
     /*
@@ -23,6 +23,11 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         return redirect()->intended('/');
+    }
+    public function showLoginForm()
+    {
+        $danh_mucs = DanhMuc::query()->get(); 
+        return view('auth.login',compact('danh_mucs'));
     }
     /**
      * Where to redirect users after login.

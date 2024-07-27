@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Admins\DanhMucController;
+use App\Http\Controllers\Admins\DonHangController;
 use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\Clients\ClientController;
 
@@ -21,6 +22,7 @@ use App\Http\Controllers\Clients\ClientController;
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('danhmucs', DanhMucController::class);
     Route::resource('sanphams', SanPhamController::class);
+    Route::resource('donhangs', DonHangController::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/user-profile', [ClientController::class, 'userProfile'])->name('user-profile');

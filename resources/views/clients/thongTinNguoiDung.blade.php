@@ -12,18 +12,16 @@
             </div>
         </div>
     </section>
-
-
     <section class="user-profile footer-padding">
         <div class="container">
             <div class="user-profile-section">
-                <div class="dashboard-heading ">
+                {{-- <div class="dashboard-heading ">
                     <h5 class="dashboard-title">Change Password</h5>
                     <div class="dashboard-switch">
                         <span class="text">Switch Dashboard</span>
                         <span onclick="switchDashboard()" class="switch-icon"></span>
                     </div>
-                </div>
+                </div> --}}
                 <div class="user-dashboard">
                     <div class="nav nav-item nav-pills  me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
@@ -236,7 +234,7 @@
                             aria-labelledby="v-pills-home-tab" tabindex="0">
                             <div class="user-profile">
                                 <div class="user-title">
-                                    <p class="paragraph">Hello, Sajjad</p>
+                                    <p class="paragraph">Hello, {{Auth::user()->name}}</p>
                                     <h5 class="heading">Welcome to your Profile </h5>
                                 </div>
                                 <div class="profile-section">
@@ -322,10 +320,10 @@
                                                             <p>Zip:</p>
                                                         </div>
                                                         <div class="info-details">
-                                                            <p>Sajjad</p>
+                                                            <p>{{Auth::user()->name}}</p>
                                                             <p><a href="https://quomodothemes.website/cdn-cgi/l/email-protection"
                                                                     class="__cf_email__"
-                                                                    data-cfemail="c0a4a5adafa5ada1a9ac80a7ada1a9aceea3afad">[email&#160;protected]</a>
+                                                                    data-cfemail="c0a4a5adafa5ada1a9ac80a7ada1a9aceea3afad">[{{Auth::user()->email}}]</a>
                                                             </p>
                                                             <p>023 434 54354</p>
                                                             <p>Haydarabad, Rord 34</p>

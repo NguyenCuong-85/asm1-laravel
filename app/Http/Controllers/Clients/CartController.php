@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Clients;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DanhMuc;
 
 class CartController extends Controller
 {
@@ -14,7 +15,7 @@ class CartController extends Controller
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
-            'hinh_anh' => $request->hinh_anh,
+            'image' => $request->image,
             'quantity' => 1,
             'attributes' => array()
         ));
@@ -25,8 +26,14 @@ class CartController extends Controller
     public function showCart()
     {
         $cartItems = Cart::getContent();
+        $danh_mucs = DanhMuc::query()->get();
+
         // dd($cartItems);
-        return view('clients.gioHang', compact('cartItems'));
+        if ($cartItems->isEmpty()) {
+            return view('clients.gioHang', compact('danh_mucs'));
+        } else {
+            return view('clients.gioHang', compact('cartItems','danh_mucs'));
+        }
     }
     public function updateCart(Request $request)
     {
@@ -49,10 +56,12 @@ class CartController extends Controller
     public function removeFromCart(Request $request)
     {
         Cart::remove($request->id);
-
+        $cartIsEmpty = Cart::isEmpty();
         return response()->json([
             'success' => 'Product removed from cart',
-            'cartTotal' => Cart::getTotal()
+            'cartTotal' => Cart::getTotal(),
+            'cartIsEmpty' => $cartIsEmpty
+
         ]);
     }
 }
