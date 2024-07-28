@@ -45,6 +45,7 @@
                     </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <!-- <i class="fas fa-fw fa-cog"></i> -->
@@ -69,6 +70,47 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom User:</h6>
                         <a class="collapse-item" href="">Danh Sách Người Dùng</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFor" aria-expanded="true" aria-controls="collapseFor">
+                    <!-- <i class="fas fa-fw fa-wrench"></i> -->
+                    <span>Chức vụ</span>
+                </a>
+                <div id="collapseFor" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom position  :</h6>
+                        <a class="collapse-item" href="{{route('chucvus.index')}}">Danh Sách Chức Vụ</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
+                    <!-- <i class="fas fa-fw fa-wrench"></i> -->
+                    <span>Bình Luận</span>
+                </a>
+                <div id="collapse5" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom comment  :</h6>
+                        <a class="collapse-item" href="{{route('binhluans.create')}}">Thêm Bình Luận</a>
+                        <a class="collapse-item" href="{{route('binhluans.index')}}">Danh Sách Bình Luận</a>
+                    </div>
+                </div>
+            </li>
+
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+                    <!-- <i class="fas fa-fw fa-wrench"></i> -->
+                    <span>Đơn hàng</span>
+                </a>
+                <div id="collapse6" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Đơn hàng  :</h6>
+                        <a class="collapse-item" href="{{route('donhangs.index')}}">Danh Sách Đơn Hàng</a>
                     </div>
                 </div>
             </li>
