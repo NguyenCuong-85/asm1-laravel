@@ -206,7 +206,7 @@
                 var quantity = $(this).data('quantity');
                 var image = $(this).data('image');
                 var token = $('meta[name="csrf-token"]').attr('content');
-                console.log(id, quantity, image, token);
+                // console.log(id, quantity, image);
                 $.ajax({
                     url: '{{ route('add.to.cart') }}',
                     method: 'POST',
@@ -216,13 +216,14 @@
                         name: name,
                         price: price,
                         quantity: quantity,
-                        image: image,
+                        image: image
                     },
                     // console.log(data);
                     success: function(response) {
                         if (response.success) {
                             alert(response.success);
-                            // Bạn có thể cập nhật giỏ hàng tại đây
+                            //cập nhật giỏ hàng tại đây
+                            $('#cart-count').text(response.cartCount);
                         }
                     },
                     error: function(xhr, status, error) {

@@ -115,8 +115,8 @@
                             </span>
                         </button>
                         <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-address" type="button" role="tab"
-                            aria-controls="v-pills-address" aria-selected="false">
+                            data-bs-target="#v-pills-address" type="button" role="tab" aria-controls="v-pills-address"
+                            aria-selected="false">
                             <span>
                                 <svg width="14" height="20" viewBox="0 0 14 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -234,7 +234,7 @@
                             aria-labelledby="v-pills-home-tab" tabindex="0">
                             <div class="user-profile">
                                 <div class="user-title">
-                                    <p class="paragraph">Hello, {{Auth::user()->name}}</p>
+                                    <p class="paragraph">Hello, {{ Auth::user()->name }}</p>
                                     <h5 class="heading">Welcome to your Profile </h5>
                                 </div>
                                 <div class="profile-section">
@@ -320,10 +320,10 @@
                                                             <p>Zip:</p>
                                                         </div>
                                                         <div class="info-details">
-                                                            <p>{{Auth::user()->name}}</p>
+                                                            <p>{{ Auth::user()->name }}</p>
                                                             <p><a href="https://quomodothemes.website/cdn-cgi/l/email-protection"
                                                                     class="__cf_email__"
-                                                                    data-cfemail="c0a4a5adafa5ada1a9ac80a7ada1a9aceea3afad">[{{Auth::user()->email}}]</a>
+                                                                    data-cfemail="c0a4a5adafa5ada1a9ac80a7ada1a9aceea3afad">[{{ Auth::user()->email }}]</a>
                                                             </p>
                                                             <p>023 434 54354</p>
                                                             <p>Haydarabad, Rord 34</p>
@@ -619,225 +619,106 @@
                         <div class="tab-pane fade" id="v-pills-order" role="tabpanel"
                             aria-labelledby="v-pills-order-tab" tabindex="0">
                             <div class="cart-section">
-                                <table>
+                                <table class="table-bordered">
                                     <tbody>
                                         <tr class="table-row table-top-row">
-                                            <td class="table-wrapper wrapper-product">
-                                                <h5 class="table-heading">PRODUCT</h5>
-                                            </td>
-                                            <td class="table-wrapper">
+                                            <td class="table-wrapper wrapper-total">
                                                 <div class="table-wrapper-center">
-                                                    <h5 class="table-heading">PRICE</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="table-heading">QUANTITY</h5>
+                                                    <h5 class="table-heading">#</h5>
                                                 </div>
                                             </td>
                                             <td class="table-wrapper wrapper-total">
                                                 <div class="table-wrapper-center">
-                                                    <h5 class="table-heading">TOTAL</h5>
+                                                    <h5 class="table-heading">Người Nhận</h5>
                                                 </div>
                                             </td>
-                                            <td class="table-wrapper">
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">Địa Chỉ</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">PTTT</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">Tổng Tiền</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">Ghi Chú</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">Ngày đặt</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">Trạng Thái</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
                                                 <div class="table-wrapper-center">
                                                     <h5 class="table-heading">ACTION</h5>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="table-row ticket-row">
-                                            <td class="table-wrapper wrapper-product">
-                                                <div class="wrapper">
-                                                    <div class="wrapper-img">
-                                                        <img src="assets/images/homepage-one/product-img/product-img-1.webp"
-                                                            alt="img">
+                                        @foreach ($don_hangs as $key => $item)
+                                            <tr class="table-row ticket-row">
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper-center">
+                                                        <p>{{ $key + 1 }}</p>
                                                     </div>
-                                                    <div class="wrapper-content">
-                                                        <h5 class="heading">Classic Design Skart</h5>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper">
+                                                        <p>{{ $item->ten_nguoi_nhan }}</p>
+                                                        <p>SDT:{{ $item->so_dien_thoai_nguoi_nhan }}</p>
+                                                        {{-- <p>Gmail:{{ $item->email_nguoi_nhan }}</p> --}}
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$20.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <div class="quantity">
-                                                        <span class="minus">
-                                                            -
-                                                        </span>
-                                                        <span class="number">1</span>
-                                                        <span class="plus">
-                                                            +
-                                                        </span>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper">
+                                                        <p>{{ $item->dia_chi_nguoi_nhan }}</p>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-total">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$40.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <span>
-                                                        <svg width="10" height="10" viewBox="0 0 10 10"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-                                                                fill="#AAAAAA"></path>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="table-row ticket-row">
-                                            <td class="table-wrapper wrapper-product">
-                                                <div class="wrapper">
-                                                    <div class="wrapper-img">
-                                                        <img src="assets/images/homepage-one/product-img/product-img-2.webp"
-                                                            alt="img">
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper-center">
+                                                        <p>{{ $item->phuong_thuc_thanh_toan }}</p>
                                                     </div>
-                                                    <div class="wrapper-content">
-                                                        <h5 class="heading">Classic Black Suit</h5>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper-center">
+                                                        <p>{{ $item->tong_tien }}</p>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$20.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <div class="quantity">
-                                                        <span class="minus">
-                                                            -
-                                                        </span>
-                                                        <span class="number">1</span>
-                                                        <span class="plus">
-                                                            +
-                                                        </span>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper">
+                                                        <p>{{ $item->ghi_chu ?: 'Trống' }}</p>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-total">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$40.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper ">
-                                                <div class="table-wrapper-center">
-                                                    <span>
-                                                        <svg width="10" height="10" viewBox="0 0 10 10"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-                                                                fill="#AAAAAA"></path>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="table-row ticket-row">
-                                            <td class="table-wrapper wrapper-product">
-                                                <div class="wrapper">
-                                                    <div class="wrapper-img">
-                                                        <img src="assets/images/homepage-one/product-img/product-img-3.webp"
-                                                            alt="img">
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper-center">
+                                                        <p>{{ $item->created_at }}</p>
                                                     </div>
-                                                    <div class="wrapper-content">
-                                                        <h5 class="heading">Blue Party Dress</h5>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper">
+                                                        <p>{{ $item->trang_thai }}</p>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$20.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <div class="quantity">
-                                                        <span class="minus">
-                                                            -
-                                                        </span>
-                                                        <span class="number">1</span>
-                                                        <span class="plus">
-                                                            +
-                                                        </span>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <div class="table-wrapper-center">
+                                                        <button class="btn shop-btn" type="submit">Hủy</button>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-total">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$40.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <span>
-                                                        <svg width="10" height="10" viewBox="0 0 10 10"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-                                                                fill="#AAAAAA"></path>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="table-row ticket-row">
-                                            <td class="table-wrapper wrapper-product">
-                                                <div class="wrapper">
-                                                    <div class="wrapper-img">
-                                                        <img src="assets/images/homepage-one/product-img/product-img-4.webp"
-                                                            alt="img">
-                                                    </div>
-                                                    <div class="wrapper-content">
-                                                        <h5 class="heading">Classic Party Dress</h5>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$20.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <div class="quantity">
-                                                        <span class="minus">
-                                                            -
-                                                        </span>
-                                                        <span class="number">1</span>
-                                                        <span class="plus">
-                                                            +
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-total">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">$40.00</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper">
-                                                <div class="table-wrapper-center">
-                                                    <span>
-                                                        <svg width="10" height="10" viewBox="0 0 10 10"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-                                                                fill="#AAAAAA"></path>
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -1386,8 +1267,8 @@
                                                     placeholder="Write Here your Description"></textarea>
                                             </div>
                                             <div class="login-btn text-center">
-                                                <a href="#" onclick="modalAction('.ticket')"
-                                                    class="shop-btn">Add Ticekt
+                                                <a href="#" onclick="modalAction('.ticket')" class="shop-btn">Add
+                                                    Ticekt
                                                     Now</a>
                                             </div>
                                         </div>

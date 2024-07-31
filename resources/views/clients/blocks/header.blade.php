@@ -93,14 +93,18 @@
                                     <path
                                         d="M22.509 25.2393C22.5193 26.4842 21.5393 27.4971 20.3064 27.5155C19.048 27.5342 18.0272 26.525 18.0277 25.2622C18.0279 24.0208 19.0214 23.0161 20.2572 23.0074C21.4877 22.9984 22.4988 24.0006 22.509 25.2393Z"
                                         fill="#6E6D79" />
-                                    <circle cx="26.9523" cy="8" r="8" fill="#AE1C9A" />
-                                    <path
+                                    {{-- <circle cx="26.9523" cy="8" r="8" fill="#AE1C9A" /> --}}
+                                    {{-- <path
                                         d="M23.7061 13V11.8864L27.1514 8.31676C27.5193 7.92898 27.8226 7.58925 28.0612 7.29759C28.3032 7.0026 28.4838 6.72254 28.6031 6.45739C28.7225 6.19223 28.7821 5.91051 28.7821 5.61222C28.7821 5.27415 28.7026 4.98248 28.5435 4.73722C28.3844 4.48864 28.1673 4.29806 27.8922 4.16548C27.6171 4.02959 27.3072 3.96165 26.9625 3.96165C26.5979 3.96165 26.2797 4.03622 26.008 4.18537C25.7362 4.33452 25.5274 4.54498 25.3815 4.81676C25.2357 5.08854 25.1628 5.40672 25.1628 5.77131H23.6962C23.6962 5.15151 23.8387 4.60961 24.1237 4.1456C24.4088 3.68158 24.7999 3.32197 25.297 3.06676C25.7942 2.80824 26.3593 2.67898 26.9923 2.67898C27.632 2.67898 28.1955 2.80658 28.6827 3.06179C29.1732 3.31368 29.556 3.65838 29.8311 4.09588C30.1062 4.53007 30.2438 5.0206 30.2438 5.56747C30.2438 5.94531 30.1725 6.31487 30.03 6.67614C29.8908 7.0374 29.6472 7.4401 29.2992 7.88423C28.9511 8.32505 28.4672 8.86032 27.8475 9.49006L25.824 11.608V11.6825H30.4078V13H23.7061Z"
-                                        fill="#F9FFFB" />
+                                        fill="#F9FFFB" /> --}}
                                 </svg>
                             </span>
                             <span class="cart-text">
-                                Cart
+                                Cart <span class="" id="cart-count">
+                                    @if (isset($cartItems))
+                                        {{ $cartItems->count() }}
+                                    @endif
+                                </span>
                             </span>
                         </a>
                         {{-- <div class="cart-submenu">
@@ -223,21 +227,21 @@
                                         </path>
                                     </svg>
                                 </span>
-                               
+
                             </a>
                     </div>
-                   
-                  
+
+
                 </div>
             </div>
-            
+
         </div>
-        
+
     </div>
     <nav class="mobile-menu d-block d-lg-none">
         <div class="mobile-menu-header d-flex justify-content-between align-items-center">
-            <button class="btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                aria-controls="offcanvasWithBothOptions">
                 <span>
                     <svg width="14" height="9" viewBox="0 0 14 9" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -642,61 +646,60 @@
                         </span>
                     </button>
                     @foreach ($danh_mucs as $item)
-                        
-                   
-                    <div class="category-dropdown position-absolute" id="subMenu">
-                        <ul class="category-list">
-                            <li class="category-list-item">
-                                <a href="product-sidebar.html">
-                                    <div class="dropdown-item">
-                                        <div class="dropdown-list-item">
-                                            <span class="dropdown-img">
-                                                {{-- <img src="assets/images/homepage-one/category-img/dresses.webp"
+                        <div class="category-dropdown position-absolute" id="subMenu">
+                            <ul class="category-list">
+                                <li class="category-list-item">
+                                    <a href="product-sidebar.html">
+                                        <div class="dropdown-item">
+                                            <div class="dropdown-list-item">
+                                                <span class="dropdown-img">
+                                                    {{-- <img src="assets/images/homepage-one/category-img/dresses.webp"
                                                     alt="dress"> --}}
-                                            </span>
-                                            <span class="dropdown-text">
-                                                {{$item->ten_danh_muc}}
-                                            </span>
+                                                </span>
+                                                <span class="dropdown-text">
+                                                    {{ $item->ten_danh_muc }}
+                                                </span>
+                                            </div>
+                                            <div class="drop-down-list-icon">
+                                                <span>
+                                                    <svg width="6" height="9" viewBox="0 0 6 9"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
+                                                            transform="rotate(45 1.5 0.818359)" fill="#1D1D1D" />
+                                                        <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
+                                                            transform="rotate(135 5.58984 4.90918)" fill="#1D1D1D" />
+                                                    </svg>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="drop-down-list-icon">
-                                            <span>
-                                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                        transform="rotate(45 1.5 0.818359)" fill="#1D1D1D" />
-                                                    <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                        transform="rotate(135 5.58984 4.90918)" fill="#1D1D1D" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div> @endforeach
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="header-nav-menu">
                     <ul class="menu-list">
                         <li>
-                            <a href="{{route('welcome')}}">
+                            <a href="{{ route('welcome') }}">
                                 <span class="list-text">Home</span>
                             </a>
                         </li>
                         <li>
-                            <a href="about.html">
+                            <a href="{{ route('about') }}">
                                 <span class="list-text">About</span>
                             </a>
                         </li>
                         <li>
-                            <a href="blogs.html">
+                            <a href="{{ route('blog') }}">
                                 <span class="list-text">Blog</span>
                             </a>
                             <ul class="header-sub-menu">
-                                <li><a href="blogs-details.html">Blog-details</a></li>
+                                <li><a href="">Blog-details</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="contact-us.html">
+                            <a href="{{ route('contact') }}">
                                 <span class="list-text">Contact</span>
                             </a>
                         </li>

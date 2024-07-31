@@ -14,92 +14,95 @@
             </div>
         </section>
         <section class="product-cart product footer-padding">
-            <div class="container">
-                <div class="cart-section">
-                    <table>
-                        <tbody>
-                            <tr class="table-row table-top-row">
-                                <td class="table-wrapper wrapper-product">
-                                    <h5 class="table-heading">PRODUCT</h5>
-                                </td>
-                                <td class="table-wrapper">
-                                    <div class="table-wrapper-center">
-                                        <h5 class="table-heading">PRICE</h5>
-                                    </div>
-                                </td>
-                                <td class="table-wrapper">
-                                    <div class="table-wrapper-center">
-                                        <h5 class="table-heading">QUANTITY</h5>
-                                    </div>
-                                </td>
-                                <td class="table-wrapper wrapper-total">
-                                    <div class="table-wrapper-center">
-                                        <h5 class="table-heading">TOTAL</h5>
-                                    </div>
-                                </td>
-                                <td class="table-wrapper">
-                                    <div class="table-wrapper-center">
-                                        <h5 class="table-heading">ACTION</h5>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                            @foreach ($cartItems as $item)
-                                <tr class="table-row ticket-row">
+            <form action="{{ route('proceedToCheckout') }}" method="post">
+                @csrf
+                <div class="container">
+                    <div class="cart-section">
+                        <table>
+                            <tbody>
+                                <tr class="table-row table-top-row">
                                     <td class="table-wrapper wrapper-product">
-                                        <div class="wrapper">
-                                            <div class="wrapper-img">
-                                                <img src="" alt="img">
-                                            </div>
-                                            <div class="wrapper-content">
-                                                <h5 class="heading">{{ $item->name }}{{ $item->hinh_anh }}</h5>
-                                            </div>
+                                        <h5 class="table-heading">PRODUCT</h5>
+                                    </td>
+                                    <td class="table-wrapper">
+                                        <div class="table-wrapper-center">
+                                            <h5 class="table-heading">PRICE</h5>
                                         </div>
                                     </td>
                                     <td class="table-wrapper">
                                         <div class="table-wrapper-center">
-                                            <h5 class="heading">{{ $item->price }}</h5>
-                                        </div>
-                                    </td>
-                                    <td class="table-wrapper">
-                                        <div class="table-wrapper-center">
-                                            <div class="quantity">
-                                                <span class="number">
-                                                    <input class="quantity" data-id="{{ $item->id }}" min="1"
-                                                        type="number" name="so_luong" value="{{ $item->quantity }}"
-                                                        id="">
-                                                </span>
-                                            </div>
+                                            <h5 class="table-heading">QUANTITY</h5>
                                         </div>
                                     </td>
                                     <td class="table-wrapper wrapper-total">
                                         <div class="table-wrapper-center">
-                                            <h5 class="heading item-total">{{ $item->getPriceSum() }} </h5>
+                                            <h5 class="table-heading">TOTAL</h5>
                                         </div>
                                     </td>
                                     <td class="table-wrapper">
                                         <div class="table-wrapper-center">
-                                            <span>
-                                                <button class="remove-from-cart shop-btn" data-id="{{ $item->id }}">Xóa</button>
-                                            </span>
+                                            <h5 class="table-heading">ACTION</h5>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="wishlist-btn cart-btn" style="justify-content: space-between">
-                    <div>
-                        <a href="empty-cart.html" class="update-btn shop-btn">Clear Cart</a>
-                        <a href="checkout.html" class="shop-btn">Proceed to Checkout</a>
+                                @foreach ($cartItems as $item)
+                                    <tr class="table-row ticket-row">
+                                        <td class="table-wrapper wrapper-product">
+                                            <div class="wrapper">
+                                                <div class="wrapper-img">
+                                                    <img src="{{ Storage::url($item->image) }}" alt="img">
+                                                </div>
+                                                <div class="wrapper-content">
+                                                    <h5 class="heading">{{ $item->name }}</h5>
+                                                    <input type="hidden" name="id[]" value="{{ $item->id }}">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="table-wrapper">
+                                            <div class="table-wrapper-center">
+                                                <h5 class="heading">{{ $item->price }}</h5>
+                                            </div>
+                                        </td>
+                                        <td class="table-wrapper">
+                                            <div class="table-wrapper-center">
+                                                <div class="quantity">
+                                                    <span class="number">
+                                                        <input class="quantity" data-id="{{ $item->id }}" min="1"
+                                                            type="number" name="so_luong[]" value="{{ $item->quantity }}"
+                                                            id="">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="table-wrapper wrapper-total">
+                                            <div class="table-wrapper-center">
+                                                <h5 class="heading item-total">{{ $item->getPriceSum() }} </h5>
+                                            </div>
+                                        </td>
+                                        <td class="table-wrapper">
+                                            <div class="table-wrapper-center">
+                                                <span>
+                                                    <button type="button" class="remove-from-cart shop-btn"
+                                                        data-id="{{ $item->id }}">Xóa</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div>
-                        <p class="shop-btn">Total Amount:<span id="cart-total">{{ Cart::getTotal() }}</span></p>
+                    <div class="wishlist-btn cart-btn" style="justify-content: space-between">
+                        <div>
+                            {{-- <a href="empty-cart.html" class="update-btn shop-btn">Clear Cart</a> --}}
+                            <button type="submit" class="shop-btn">Proceed to Checkout</button>
+                        </div>
+                        <div>
+                            <p class="shop-btn">Total Amount:<span id="cart-total">{{ Cart::getTotal() }}</span></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </section>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
@@ -144,15 +147,15 @@
                         id: id
                     },
                     success: function(response) {
-                    if (response.success) {
-                        $('button[data-id="' + id + '"]').closest('tr').remove();
-                        $('#cart-total').text(response.cartTotal);
+                        if (response.success) {
+                            $('button[data-id="' + id + '"]').closest('tr').remove();
+                            $('#cart-total').text(response.cartTotal);
 
-                        if (response.cartIsEmpty) {
-                            location.reload(); // Reload lại trang khi giỏ hàng trống
+                            if (response.cartIsEmpty) {
+                                location.reload(); // Reload lại trang khi giỏ hàng trống
+                            }
                         }
-                    }
-                },
+                    },
                     error: function(xhr, status, error) {
                         console.error(error);
                     }
