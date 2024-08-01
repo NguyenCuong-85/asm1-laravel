@@ -23,6 +23,11 @@
                         <img src="{{ asset('assets/clients/images/logos/logo.webp') }}" alt="logo">
                     </a>
                 </div>
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="header-cart-items">
                     <div class="header-search">
                         <button class="header-search-btn" onclick="modalAction('.search')">
@@ -36,28 +41,26 @@
                             </span>
                         </button>
                         <div class="modal-wrapper search">
-                            <div onclick="modalAction('.search')" class="anywhere-away"></div>
-
-                            <div class="modal-main">
-                                <div class="wrapper-close-btn" onclick="modalAction('.search')">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="red" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M6 18L18 6M6 6l12 12"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="wrapper-main">
-                                    <div class="search-section">
-                                        <input type="text" placeholder="Search Products.........">
-                                        <div class="divider"></div>
-                                        <button type="button">All Categories</button>
-                                        <a href="#" class="shop-btn">Search</a>
+                            <form action="{{route('welcome')}}" method="get">
+                                <div onclick="modalAction('.search')" class="anywhere-away"></div>
+                                <div class="modal-main">
+                                    <div class="wrapper-close-btn" onclick="modalAction('.search')">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="red" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="wrapper-main">
+                                        <div class="search-section">
+                                            <input type="text" name="search" value="{{request('search')}}" placeholder="Search Products.........">
+                                            <button type="submit" class="btn shop-btn">Search</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </form>
                         </div>
                     </div>
                     <div class="header-favourite">
@@ -334,296 +337,6 @@
                         </svg>
                     </span>
                 </div>
-                <div class="category-dropdown">
-                    <ul class="category-list">
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/dresses.webp"
-                                                alt="dress">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Dresses
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/bags.webp"
-                                                alt="Bags">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Bags
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/sweaters.webp"
-                                                alt="sweaters">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sweaters
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/shoes.webp"
-                                                alt="sweaters">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Boots
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/gift.webp"
-                                                alt="gift">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Gifts
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/sneakers.webp"
-                                                alt="sneakers">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sneakers
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/watch.webp"
-                                                alt="watch">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Watches
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/ring.webp"
-                                                alt="ring">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Gold Ring
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/cap.webp"
-                                                alt="cap">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Cap
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/glass.webp"
-                                                alt="glass">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Sunglasses
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="category-list-item">
-                            <a href="product-sidebar.html">
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="dropdown-list-item d-flex">
-                                        <span class="dropdown-img">
-                                            <img src="assets/images/homepage-one/category-img/baby.webp"
-                                                alt="baby">
-                                        </span>
-                                        <span class="dropdown-text">
-                                            Baby Shop
-                                        </span>
-                                    </div>
-                                    <div class="drop-down-list-icon">
-                                        <span>
-                                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="1.5" y="0.818359" width="5.78538" height="1.28564"
-                                                    transform="rotate(45 1.5 0.818359)" />
-                                                <rect x="5.58984" y="4.90918" width="5.78538" height="1.28564"
-                                                    transform="rotate(135 5.58984 4.90918)" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </nav>
@@ -649,7 +362,7 @@
                         <div class="category-dropdown position-absolute" id="subMenu">
                             <ul class="category-list">
                                 <li class="category-list-item">
-                                    <a href="product-sidebar.html">
+                                    <a href="{{ route('danhmucsanpham', $item->id) }}">
                                         <div class="dropdown-item">
                                             <div class="dropdown-list-item">
                                                 <span class="dropdown-img">

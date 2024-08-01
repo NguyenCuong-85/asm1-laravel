@@ -18,7 +18,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
 
-                           
+
                             <tr>
                                 <th>#</th>
                                 <th>Tên Người Nhận</th>
@@ -38,7 +38,7 @@
                             @foreach ($data as $key => $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>ID-{{$item->user_id}}: {{ $item->ten_nguoi_nhan }}</td>
+                                    <td>ID-{{ $item->user_id }}: {{ $item->ten_nguoi_nhan }}</td>
                                     <td>{{ $item->email_nguoi_nhan }}</td>
                                     <td>{{ $item->so_dien_thoai_nguoi_nhan }}</td>
                                     <td>{{ $item->dia_chi_nguoi_nhan }}</td>
@@ -49,7 +49,7 @@
                                     <td>{{ $item->updated_at }}</td>
                                     <td>{{ $item->trang_thai }}</td>
                                     <td class="">
-                                        <form action="" method="POST"
+                                        <form action="{{ route('donhangs.destroy', $item) }}" method="POST"
                                             onsubmit="return confirm('Bạn có muốn xóa sản phẩm này không?')">
                                             @csrf
                                             @method('DELETE')
@@ -57,13 +57,31 @@
                                                 <button type="submit" class="btn btn-outline-danger"><i
                                                         class="fas fa-trash text-danger"></i></button>
                                         </form>
-                                        <a href=""
-                                            class="btn btn-outline-warning"><i class="fas fa-edit text-warning"></i></a>
-                                        <a href="" class="btn btn-outline-info"><i
+                                        <a href="{{ route('donhangs.show', $item->id) }}" class="btn btn-outline-info"><i
                                                 class="fas fa-info text-info"></i></a>
-                                                <a href="" class="btn btn-outline-success"><i class="fas fa-fw fa-cog"></i></a>
-
+                                        <!-- Example single danger button -->
+                                        <div class="btn btn-outline-success">
+                                            <button type="button" class="btn btn-danger dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-fw fa-cog"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <form action="{{ route('donhangs.update', $item) }}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input class="dropdown-item" type="submit" name="trang_thai"
+                                                        value="đã hủy" id="">
+                                                </form>
+                                                <form action="{{ route('donhangs.update', $item) }}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input class="dropdown-item" type="submit" name="trang_thai"
+                                                        value="đang vận chuyển" id="">
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>

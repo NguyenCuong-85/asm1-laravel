@@ -125,7 +125,7 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="exampleFormControlSelect1">Danh Mục</label><select
-                                                class="form-control @error('title') is-invalid @enderror"
+                                                class="form-control @error('danh_muc_id') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" name="danh_muc_id">
                                                 <option>--Chọn danh mục--</option>
                                                 @foreach ($data as $item)

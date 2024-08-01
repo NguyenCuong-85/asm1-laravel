@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers\Clients;
 
-use Darryldecode\Cart\Facades\CartFacade as Cart;
+use App\Models\DanhMuc;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\DanhMuc;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
+        $san_pham = SanPham::findOrFail($request->id);
         Cart::add(array(
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'image' => $request->image,
+            'id' => $san_pham->id,
+            'name' => $san_pham->ten_san_pham,
+            'price' => $san_pham->gia,
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => array(
+                'image' => $san_pham->hinh_anh,
+            )
         ));
         $cartCount = Cart::getContent()->count();
 
@@ -26,7 +29,10 @@ class CartController extends Controller
 
     public function showCart()
     {
+        // dd(Cart::getContent());
         $cartItems = Cart::getContent();
+        // $id = $cartItems->pluck('id')->toArray();
+        // $cartItems = SanPham::whereIn('id', $id)->get();
         $danh_mucs = DanhMuc::query()->get();
         if ($cartItems->isEmpty()) {
             return view('clients.gioHang', compact('danh_mucs'));

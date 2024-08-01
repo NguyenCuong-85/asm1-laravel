@@ -50,7 +50,7 @@
                                         <td class="table-wrapper wrapper-product">
                                             <div class="wrapper">
                                                 <div class="wrapper-img">
-                                                    <img src="{{ Storage::url($item->image) }}" alt="img">
+                                                    <img src="{{ Storage::url($item->attributes->image) }}" alt="img">
                                                 </div>
                                                 <div class="wrapper-content">
                                                     <h5 class="heading">{{ $item->name }}</h5>

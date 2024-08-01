@@ -72,9 +72,12 @@
                 Activity Log
             </a>
             <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item" href="">
-                    Logout
-                </a>
+                
+                    <form id="logout-form"  class="dropdown-item" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                        <button class="dropdown-item" type="submit" class="btn btn-link">Logout</button>
+                    </form>
+                
             </div>
         </li>
 

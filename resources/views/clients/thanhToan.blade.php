@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('content')
+@section('info')
     <section class="blog about-blog">
         <div class="container">
             <div class="blog-bradcrum">
