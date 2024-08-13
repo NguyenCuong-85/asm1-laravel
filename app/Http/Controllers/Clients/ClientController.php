@@ -84,6 +84,7 @@ class ClientController extends Controller
     }
     public function showFormCheckOut(Request $request)
     {
+        // dd($request->all());
         if ($request->isMethod('post')) {
             $danh_mucs = DanhMuc::query()->get();
             $cartItems = Cart::getContent();

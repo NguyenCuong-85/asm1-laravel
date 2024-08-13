@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('info')
+@section('content')
     <section class="blog about-blog">
         <div class="container">
             <div class="blog-bradcrum">
@@ -39,13 +39,13 @@
                                             </div>
                                             <div class="review-form-name">
                                                 <label for="phone" class="form-label">Phone*</label>
-                                                <input type="tel" name="so_dien_thoai_nguoi_nhan" id="phone" class="form-control"
+                                                <input type="tel" name="so_dien_thoai_nguoi_nhan" value="{{ Auth::user()->so_dien_thoai }}" id="phone" class="form-control"
                                                     placeholder="+880388**0899">
                                             </div>
                                         </div>
                                         <div class="review-form-name address-form">
                                             <label for="address" class="form-label">Address*</label>
-                                            <input type="text" id="address" name="dia_chi_nguoi_nhan" class="form-control"
+                                            <input type="text" id="address" name="dia_chi_nguoi_nhan" value="{{ Auth::user()->dia_chi }}" class="form-control"
                                                 placeholder="Enter your Address">
                                         </div>
                                         <div class="review-textarea">
@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="subtotal payment-type">
                                             <div class="checkbox-item">
-                                                <input type="radio" id="bank" value="Internet banking" name="phuong_thuc_thanh_toan">
+                                                <input type="radio" id="bank" value="Internet banking" name="phuong_thuc_thanh_toan" required>
                                                 <div class="bank">
                                                     <h5 class="wrapper-heading">Direct Bank Transfer</h5>
                                                     <p class="paragraph">Make your payment directly into our bank account.
@@ -107,7 +107,7 @@
                                                 </div>
                                             </div>
                                             <div class="checkbox-item">
-                                                <input type="radio" id="cash" value="Sip COD" name="phuong_thuc_thanh_toan">
+                                                <input type="radio" id="cash" value="Sip COD" name="phuong_thuc_thanh_toan" required>
                                                 <div class="cash">
                                                     <h5 class="wrapper-heading">Cash on Delivery</h5>
                                                 </div>

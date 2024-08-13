@@ -41,7 +41,7 @@
                             </span>
                         </button>
                         <div class="modal-wrapper search">
-                            <form action="{{route('welcome')}}" method="get">
+                            <form action="{{ route('welcome') }}" method="get">
                                 <div onclick="modalAction('.search')" class="anywhere-away"></div>
                                 <div class="modal-main">
                                     <div class="wrapper-close-btn" onclick="modalAction('.search')">
@@ -55,7 +55,8 @@
                                     </div>
                                     <div class="wrapper-main">
                                         <div class="search-section">
-                                            <input type="text" name="search" value="{{request('search')}}" placeholder="Search Products.........">
+                                            <input type="text" name="search" value="{{ request('search') }}"
+                                                placeholder="Search Products.........">
                                             <button type="submit" class="btn shop-btn">Search</button>
                                         </div>
                                     </div>
@@ -358,9 +359,11 @@
                             All Categories
                         </span>
                     </button>
-                    @foreach ($danh_mucs as $item)
-                        <div class="category-dropdown position-absolute" id="subMenu">
-                            <ul class="category-list">
+
+                    {{-- @dd($danh_mucs) --}}
+                    <div class="category-dropdown position-absolute" id="subMenu">
+                        <ul class="category-list">
+                            @foreach ($danh_mucs as $item)
                                 <li class="category-list-item">
                                     <a href="{{ route('danhmucsanpham', $item->id) }}">
                                         <div class="dropdown-item">
@@ -387,9 +390,10 @@
                                         </div>
                                     </a>
                                 </li>
-                            </ul>
-                        </div>
-                    @endforeach
+                            @endforeach
+                        </ul>
+                    </div>
+
                 </div>
                 <div class="header-nav-menu">
                     <ul class="menu-list">

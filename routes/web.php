@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\DonHangController;
+use App\Http\Controllers\Admins\NguoiDungController;
 use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\Clients\ClientController;
 
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('danhmucs', DanhMucController::class);
         Route::resource('sanphams', SanPhamController::class);
         Route::resource('donhangs', DonHangController::class);
+        Route::get('/user', [NguoiDungController::class, 'index'])->name('user');
     });
     Route::get('/user-profile', [ClientController::class, 'userProfile'])->name('user-profile');
     Route::get('/donHang', [ClientController::class, 'donHang'])->name('donHang');
@@ -32,8 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-user', [ClientController::class, 'updateUser'])->name('update-user');
     Route::get('/chiTietDonHang/{id}', [ClientController::class, 'chiTietDonHang'])->name('chiTietDonHang');
     Route::post('/huyDonHang/{id}', [ClientController::class, 'huyDonHang'])->name('huyDonHang');
-
-
     Route::post('/proceed-to-checkout', [ClientController::class, 'showFormCheckOut'])->name('proceedToCheckout');
     Route::post('/checkout', [ClientController::class, 'checkOut'])->name('checkOut');
 });

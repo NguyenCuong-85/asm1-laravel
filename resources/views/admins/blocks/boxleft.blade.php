@@ -79,7 +79,7 @@
                 <div id="collapsethree" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom User:</h6>
-                        <a class="collapse-item" href="">Danh Sách Người Dùng</a>
+                        <a class="collapse-item" href="{{route('user')}}">Danh Sách Người Dùng</a>
                     </div>
                 </div>
             </li>

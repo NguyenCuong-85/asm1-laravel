@@ -24,11 +24,12 @@ class SanPhamRequest extends FormRequest
         return [
             'ma_san_pham' => 'required|string|max:255|unique:san_phams,ma_san_pham,' . $this->route('sanphams'),
             'ten_san_pham' => 'required|string|max:255',
-            'hinh_anh' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'hinh_anh' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'so_luong' => 'required|integer|min:1',
             'gia' => 'required|numeric|min:0|max:99999999',
             'mo_ta' => 'nullable|string',
             'ngay_san_xuat' => 'required|date',
+            // 'ngay_het_han'=>'nullable|date',
             'trang_thai' => 'required|in:0,1',
             'danh_muc_id' => 'required|exists:danh_mucs,id',
         ];
@@ -46,7 +47,7 @@ class SanPhamRequest extends FormRequest
             'ten_san_pham.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
             
             'hinh_anh.image' => 'Hình ảnh phải là một tập tin hình ảnh.',
-            'hinh_anh.mimes' => 'Hình ảnh phải có định dạng jpeg, png, jpg, gif, hoặc svg.',
+            'hinh_anh.mimes' => 'Hình ảnh phải có định dạng jpeg, png, jpg, gif, webp, hoặc svg.',
             'hinh_anh.max' => 'Hình ảnh không được vượt quá 2MB.',
             
             'so_luong.required' => 'Số lượng là bắt buộc.',
